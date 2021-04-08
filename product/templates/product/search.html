@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+   {% for product in results %}
+<section style="background-color: black;">
+<div   class="card mb-3" style="max-width: 100%; background-color: black;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img style="width: 300px; height: auto;" src="{{ product.image.url }}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <li><h5 class="card-title"><a href="{% url 'detail' product.id %}">{{ product.name }}</a></h5></li>
+          <p class="card-text">{{ product.price }}</p>
+        <p class="card-text">{{ product.description | truncatewords:10 }}</p>
+          {% if product.status == 'in stock' %}
+        <p style="color: green;" class="card-text">В наличии</p>
+          {% elif product.status == 'out of stock' %}
+          <p style="color: red;" class="card-text">Нет в наличии</p>
+          {% else %}
+          <p style="color: blue;" class="card-text">Ожидается</p>
+     {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+    {% endfor %}
+</section>
+{% endblock %}

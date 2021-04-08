@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<section class="instagram-post-section spad">
+        <div class="container">
+            <div class="row">
+{% if request.user.is_staff and request.user.is_superuser and request.user.is_authenticated %}
+                <div>
+<a class="btn btn-danger" href="{% url 'update-product' product.id %}" role="button">Update</a>
+<a class="btn btn-danger" href="{% url 'delete-product' product.id %}" role="button">Delete</a>
+                </div>
+{% endif %}
+
+    <figure style="text-align: center;" class="figure">
+  <img style="width: 600px; height: auto; border: 5px solid black;" src="{{ product.image.url }}" class="figure-img img-fluid rounded" alt="...">
+  <h4 style="border: 5px solid black; color: #fff;">Цена: {{ product.price }} сом</h4>
+       <h2 style="color: #fff;">{{ product.name }}</h2>
+        <figcaption style="color: #fff;" class="figure-caption">{{ product.description }}</figcaption>
+        <button class="btn btn-danger"><a style="color: white" href="{% url 'cart_add' product.id %}">Add To Cart</a></button>
+    <div>
+        {% if request.user.is_authenticated %}
+            <button type="submit" class="btn btn-danger"><a href="{% url 'add_comment' product.id %}" style="color:#fff">Comment</a></button>
+            <button type="submit" class="btn btn-success"><a href="{% url 'list_comments' product.id %}" style="color:#fff">See all comments</a></button>
+        {% endif %}
+        <h4>Comments...</h4>
+        <br/>
+            <br/>
+            {% for comment in product.product.all %}
+        <div>
+
+                <strong>
+                    <h5 style="color: white">{{ comment.user }} -
+                        {{ comment.created }}</h5>
+                </strong >
+                <br/>
+            <p style="color:white">{{ comment.body }}</p>
+
+                <hr>
+
+            </div>
+            {% endfor %}
+
+    </div>
+</figure>
+            </div>
+        </div>
+</section>
+Ω
+{% endblock %}
+

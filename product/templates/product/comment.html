@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div>
+        <form style="color:#fff;" method="post" enctype="multipart/form-data">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+            <h2>Hello</h2>
+        <button type="submit" class="btn btn-danger" style="color:#fff">Comment</button>
+        </form>
+    </div>
+{% endblock %}

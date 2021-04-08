@@ -1,0 +1,33 @@
+{% extends '404.html' %}
+{% block content %}
+
+    <div style="background-color: black;" class="">
+        <div class="signup-close"><i class="fa fa-close"></i></div>
+        <div class="signup-text">
+            <div class="container">
+                <div class="signup-title">
+                    <h2>Регистрация</h2>
+                    <p></p>
+                </div>
+                <form  class="signup-form" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <div class="sf-input-list">
+                        <input name="username" type="text" class="input-value" placeholder="User Name*">
+                        <input name="password" type="password" class="input-value" placeholder="Password">
+                        <input name="password_confirmation" type="password" class="input-value" placeholder="Confirm Password">
+                        <input name="email" type="email" class="input-value" placeholder="Email Address">
+                        <input name="first_name" type="text" class="input-value" placeholder="Fisrt Name">
+                        <input name="last_name" type="text" class="input-value" placeholder="Last Name">
+                    </div>
+                    <div class="radio-check">
+                        <label for="rc-agree"> Я соглашаюсь с условиями использования и политикой конфиденциальности
+                            <input type="checkbox" id="rc-agree">
+                            <span class="checkbox"></span>
+                        </label>
+                    </div>
+                    <button type="submit"><span>Зарегистрироваться</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

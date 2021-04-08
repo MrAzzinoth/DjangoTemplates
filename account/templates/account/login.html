@@ -1,0 +1,22 @@
+{% extends '404.html' %}
+{% block content %}
+    <div style="background-color: black;" class="">
+        <div class="signup-close"><i class="fa fa-close"></i></div>
+        <div class="signup-text">
+            <div class="container">
+                <div class="signup-title">
+                    <h2>Авторизация</h2>
+                    <p></p>
+                </div>
+                <form  class="signup-form" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <div class="sf-input-list">
+                        <input name="username" type="text" class="input-value" placeholder="User Name*">
+                        <input name="password" type="password" class="input-value" placeholder="Password">
+                    </div>
+                    <button type="submit"><span>Войти</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

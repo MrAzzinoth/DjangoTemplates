@@ -1,0 +1,270 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <section class="latest-preview-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h5>Новинки товаров</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="lp-slider owl-carousel">
+                    {% for product in products %}
+                    <div class="col-lg-3">
+                        <div class="lp-item">
+                            <div class="lp-pic set-bg"  data-setbg="">
+                                <img style="width: 180; height: 200px" src="{{ product.image.url }}">
+                                <div class="review-loader">
+                                    <div class="loader-circle-wrap">
+                                        <div class="loader-circle">
+                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
+                                                data-cpcolor="#c20000"></span>
+                                            <div class="review-point">7.5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lp-text">
+                                <h6><a href="{% url 'detail' product.id %}">{{ product.name }}</a></h6>
+                                <p><h5 style="color: white"></h5></p>
+                                <a style="color: white"></a>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                    <li><i class="fa fa-comment-o"></i> 12</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+<section class="categories-grid-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0">
+                    <div class="row">
+                        {% for product in products %}
+                        <div class="col-lg-6">
+                            <div class="cg-item">
+                                <div class="cg-pic set-bg" data-setbg="{{ product.image.url }}">
+                                    <div class="label"><span>{{ product.status }}</span></div>
+                                </div>
+                                <div class="cg-text">
+                                    <h5><a href="{% url 'detail' product.id %}">{{ product.name }}</a></h5>
+                                    <h5 style="color:white;">{{ product.price }}</h5>
+                                    <p>{{ product.description|truncatewords:30 }}</p>
+                                    <ul>
+                                        <li>by <span></span></li>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 20</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="pagination-item">
+                            {% if is_paginated %}
+      {% if page_obj.has_previous %}
+
+                            <a href="{% url 'list' category %}?page={{ page_obj.previous_page_number }}"><span>Prev</span></a>
+      {% endif %}
+                        <a href="#"><span>{{ page_obj.number }}</span></a>
+      {% if page_obj.has_next %}
+                        <a href="{% url 'list' category %}?page={{ page_obj.next_page_number }}"><span>Next</span></a>
+      {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-4 col-md-7 p-0">
+                    <div class="sidebar-option">
+                        <div class="social-media">
+                            <div class="section-title"><h5>Social media</h5>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="sm-icon"><i class="fa fa-facebook"></i></div>
+                                    <span>Facebook</span>
+                                    <div class="follow">1,2k Follow</div>
+                                </li>
+                                <li>
+                                    <div class="sm-icon"><i class="fa fa-twitter"></i></div>
+                                    <span>Twitter</span>
+                                    <div class="follow">1,2k Follow</div>
+                                </li>
+                                <li>
+                                    <div class="sm-icon"><i class="fa fa-youtube-play"></i></div>
+                                    <span>Youtube</span>
+                                    <div class="follow">2,3k Subs</div>
+                                </li>
+                                <li>
+                                    <div class="sm-icon"><i class="fa fa-instagram"></i></div>
+                                    <span>Instagram</span>
+                                    <div class="follow">2,6k Follow</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hardware-guides">
+                            <div class="section-title">
+                                <h5>Hardware guides</h5>
+                            </div>
+                            <div class="trending-item">
+                                <div class="ti-pic">
+                                    <img src="{% static 'img/trending/trending-5.jpg' %}" alt="">
+                                </div>
+                                <div class="ti-text">
+                                    <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
+                                    </h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 12</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="trending-item">
+                                <div class="ti-pic">
+                                    <img src="{% static 'img/trending/trending-6.jpg' %}" alt="">
+                                </div>
+                                <div class="ti-text">
+                                    <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a></h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 12</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="trending-item">
+                                <div class="ti-pic">
+                                    <img src="{% static 'img/trending/trending-7.jpg' %}" alt="">
+                                </div>
+                                <div class="ti-text">
+                                    <h6><a href="#">This gaming laptop with a GTX 1660 Ti and 32GB of RAM is down...</a>
+                                    </h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 12</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="trending-item">
+                                <div class="ti-pic">
+                                    <img src="{% static 'img/trending/trending-8.jpg' %}" alt="">
+                                </div>
+                                <div class="ti-text">
+                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a></h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 12</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="insta-media">
+                            <div class="section-title">
+                                <h5>Instagram</h5>
+                            </div>
+                            <div class="insta-pic">
+                                <img src="img/instagram/ip-1.jpg" alt="">
+                                <img src="img/instagram/ip-2.jpg" alt="">
+                                <img src="img/instagram/ip-3.jpg" alt="">
+                                <img src="img/instagram/ip-4.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="best-of-post">
+                            <div class="section-title">
+                                <h5>Best of</h5>
+                            </div>
+                            <div class="bp-item">
+                                <div class="bp-loader">
+                                    <div class="loader-circle-wrap">
+                                        <div class="loader-circle">
+                                            <span class="circle-progress-1" data-cpid="id-1" data-cpvalue="95"
+                                                data-cpcolor="#c20000"></span>
+                                            <div class="review-point">9.5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bp-text">
+                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 20</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bp-item">
+                                <div class="bp-loader">
+                                    <div class="loader-circle-wrap">
+                                        <div class="loader-circle">
+                                            <span class="circle-progress-1" data-cpid="id-2" data-cpvalue="85"
+                                                data-cpcolor="#c20000"></span>
+                                            <div class="review-point">8.5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bp-text">
+                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 20</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bp-item">
+                                <div class="bp-loader">
+                                    <div class="loader-circle-wrap">
+                                        <div class="loader-circle">
+                                            <span class="circle-progress-1" data-cpid="id-3" data-cpvalue="80"
+                                                data-cpcolor="#c20000"></span>
+                                            <div class="review-point">8.0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bp-text">
+                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 20</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bp-item">
+                                <div class="bp-loader">
+                                    <div class="loader-circle-wrap">
+                                        <div class="loader-circle">
+                                            <span class="circle-progress-1" data-cpid="id-4" data-cpvalue="75"
+                                                data-cpcolor="#c20000"></span>
+                                            <div class="review-point">7.5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bp-text">
+                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
+                                    <ul>
+                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                        <li><i class="fa fa-comment-o"></i> 20</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
